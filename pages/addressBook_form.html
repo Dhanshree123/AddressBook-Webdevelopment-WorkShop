@@ -26,6 +26,42 @@
                 </div>
                 <div class = "form-image" ><a href = "./addressBook_form.html"><img src="..\assets\cross.jpeg"></a></div>
             </div>
+            <div class="row-content">
+                <input class="input" type="text" id="name" name="name" placeholder="Full Name" required>
+                <error-output class="text-error" for="text"></error-output>
+            </div>
+            <div class="row-content">
+                <textarea id="address" class="input" name="Notes" placeholder="Address" style="height:100px"></textarea>
+            </div>
+            <div class="single-row-content">
+                <div class="inner-single-row">
+                <select class="select-input" required>
+                  <option value="" selected disabled hidden>Select City</option>
+                  <option value="Hyderabad">Hyderabad</option>
+                  <option value="Bengaluru">Bengaluru</option>
+                  <option value="Pune">Pune</option>
+                  <option value="Bhopal">Bhopal</option>
+                  <option value="Jaipur">Jaipur</option>
+                </select>
+              </div>
+              <div class="inner-single-row">
+                <select class="select-input" required>
+                  <option value="" selected disabled hidden>Select State</option>
+                  <option value="Andhra Pradesh">Andhra Pradesh</option>
+                  <option value="Karnataka">Karnataka</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Madhya Pradesh">Madhya Pradesh</option>
+                  <option value="Rajasthan">Rajasthan</option>
+                </select>
+              </div>
+              <div class="inner-single-row">
+                <input class="input" type="text" name="Zip" id="zip" placeholder="Zip">
+              </div>
+            </div>
+            <div class="row-content">
+                <input class="input" type="text" name="Phone" id="phone" placeholder="PhoneNumber">
+                <error-output class="phone-error" for="text"></error-output>
+            </div>
             </form></div>
     </body>
     </html>
