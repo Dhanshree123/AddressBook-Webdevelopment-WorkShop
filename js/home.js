@@ -1,4 +1,7 @@
+let contactLocalStorageList;
 window.addEventListener('DOMContentLoaded',(event) => {
+    contactLocalStorageList = getLocalStorageContacts();
+    document.querySelector(".person-count").textContent = contactLocalStorageList.length;
     createInnerHtml();
   });
 
@@ -11,11 +14,10 @@ window.addEventListener('DOMContentLoaded',(event) => {
       <th>Zip Code</th>
       <th>Phone Number</th>
     `;
-    let contactList = createContactJSON();
-    if(contactList.length == 0) return;
-    document.querySelector(".person-count").textContent = contactList.length;
+    if(contactLocalStorageList.length == 0) return;
+    document.querySelector(".person-count").textContent = contactLocalStorageList.length;
     let innerHtml = `${headerHtml}`;
-    for(const contactData of contactList)
+    for(const contactData of contactLocalStorageList)
     {
     innerHtml = `${innerHtml}
     <tr>
@@ -35,6 +37,11 @@ window.addEventListener('DOMContentLoaded',(event) => {
     `;
     }
   document.querySelector('#table-display').innerHTML = innerHtml;
+  }
+
+  const getLocalStorageContacts = () => {
+    return localStorage.getItem("contactLocalStorageList") ?
+    JSON.parse(localStorage.getItem('contactLocalStorageList')) : [];
   }
 
   const createContactJSON = () => {
