@@ -34,7 +34,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     phNo.addEventListener('input', function() {
       let phone = document.querySelector('#phoneNumber').value;
       try{
-        (new Contact()).phone = phoneNumber;
+        (new Contact()).phone = phoneNumber.value;
         phoneError.textContent = "";
       }catch(e){
         phoneError.textContent = e;
@@ -46,6 +46,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 const save = (event) => {
   try{
   let contactData = createContact();
+  createAndUpdateStorage(contactData);
   alert(contactData.toString());
   }
   catch(e){
@@ -67,4 +68,16 @@ const createContact = () => {
 const getInputValueById = (id) => {
   let value = document.querySelector(id).value;
   return value;
+}
+
+function createAndUpdateStorage(contactData) {
+
+  let contactLocalStorageList = JSON.parse(localStorage.getItem("contactLocalStorageList"));
+
+  if(contactLocalStorageList != undefined) {
+    contactLocalStorageList.push(contactData);
+  } else {
+    contactLocalStorageList = [contactData];
+  }
+  localStorage.setItem("contactLocalStorageList", JSON.stringify(contactLocalStorageList));
 }

@@ -36,13 +36,13 @@ class Contact{
         if(addressWords.length>1) {
             for(let words of addressWords) {
                 if(!addressRegex.test(words))   
-                    addressError.textContent = "Minimum Length Should be 3";
+                    throw "Minimum Length Should be 3";
                 else
                     this._address = address;
             }
         }
         else {
-            addressError.textContent = "Add multiple words";
+            throw "Add multiple words";
         }
     }
 
@@ -89,7 +89,7 @@ class Contact{
         if(phoneRegex1.test(phone) || phoneRegex2.test(phone) || phoneRegex3.test(phone))
             this._phone = phone;
         else 
-           "Invalid Phone Number";
+           throw "Invalid Phone Number";
     }
 
     toString()
