@@ -55,7 +55,16 @@ const save = (event) => {
 }
 
 const createContact = () => {
+  let contactLocalStorageList = JSON.parse(localStorage.getItem("contactLocalStorageList"));
+  let max = 0;
+  if(contactLocalStorageList){
+      for(const contactData of contactLocalStorageList){
+          if(max<contactData._id)
+          max = contactData._id;
+      }
+  }
   let contactData = new Contact();
+  contactData.id = parseInt(max) + 1;
   contactData.name = getInputValueById('#name');
   contactData.address = getInputValueById('#address');
   contactData.city = getInputValueById('#city');

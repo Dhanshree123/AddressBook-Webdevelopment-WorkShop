@@ -28,9 +28,9 @@ window.addEventListener('DOMContentLoaded',(event) => {
         <td>${contactData._zip}</td>
         <td>${contactData._phone}</td>
         <td>
-        <img name="${contactData._id}" onclick="remove(this)" alt="delete" 
+        <img id="${contactData._id}" onclick="remove(this)" alt="delete" 
                 src="../assets/icons/delete-black-18dp.svg">
-        <img name="${contactData._id}" alt="edit" onclick="update(this)"
+        <img id="${contactData._id}" alt="edit" onclick="update(this)"
                 src="../assets/icons/create-black-18dp.svg">
         </td>
     </tr>
@@ -65,3 +65,12 @@ window.addEventListener('DOMContentLoaded',(event) => {
     ];
     return contactListArray;
   }
+  const remove = (node) => {
+    let contact = contactLocalStorageList.find(contactData => contactData._id == node.id);
+    if(!contact) return;
+    const index = contactLocalStorageList.map(contactData => contactData._id).indexOf(contact._id);
+    contactLocalStorageList.splice(index,1);
+    document.querySelector(".person-count").textContent = contactLocalStorageList.length;
+    localStorage.setItem("contactLocalStorageList",JSON.stringify(contactLocalStorageList));
+    createInnerHtml();
+}
