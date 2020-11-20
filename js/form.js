@@ -10,13 +10,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
     if (nameList.length == 2) {
         if(!nameRegex.test(nameList[0]))
-        textError.textContent = 'Invalid First Name';
+        textError.textContent = 'Invalid Name';
         if(!nameRegex.test(nameList[1]))
-        textError.textContent = 'Invalid Last Name';
+        textError.textContent = 'Invalid Name';
     }
     else {
       if(!nameRegex.test(nameList[0]))
-        textError.textContent = 'Invalid First Name';
+        textError.textContent = 'Invalid Name';
       else
         textError.textContent = "";
     }
@@ -30,14 +30,15 @@ window.addEventListener('DOMContentLoaded', (event) => {
         if(addressWords.length>1) {
             for(words of addressWords) {
                 if(!addressRegex.test(words))   
-                    addressError.textContent = "Word should be of minimum 3 length";
+                    addressError.textContent = "Minimum Length Should be 3";
                 else
                     addressError.textContent = "";
             }
         }
         else {
-            addressError.textContent = "Address Must have multile words";
+            addressError.textContent = "Add multiple words";
         }
+        
     })
 
     const phNo = document.querySelector('#phoneNumber');
@@ -46,10 +47,34 @@ window.addEventListener('DOMContentLoaded', (event) => {
         let phoneRegex1 = RegExp('^[1-9]{1}[0-9]{9}$');
         let phoneRegex2 = RegExp('^[0-9]{2}[1-9]{1}[0-9]{9}$');
         let phoneRegex3 = RegExp('^[+]{1}[0-9]{2}[1-9]{1}[0-9]{9}$');
-        if(phoneRegex1.test(phNo) || phoneRegex2.test(phNo) || phoneRegex3.test(phNo))
+        if(phoneRegex1.test(phNo.value) || phoneRegex2.test(phNo.value) || phoneRegex3.test(phNo.value))
             phoneError.textContent = "";
         else 
             phoneError.textContent = "Invalid Phone Number";
     })
 
 });
+
+const save = (event) => {
+  let contactData = createContact();
+  let jsonObject = JSON.stringify(contactData);
+  alert(jsonObject);
+}
+
+const createContact = () => {
+  let contactData = new Contact();
+  let names = getInputValueById('#name').split(" ");
+  contactData.firstName = names[0];
+  contactData.lastName = names[1];
+  contactData.address = getInputValueById('#address');
+  contactData.city = getInputValueById('#city');
+  contactData.state = getInputValueById('#state');
+  contactData.zip = getInputValueById('#zip');
+  contactData.phone = getInputValueById('#phoneNumber');
+  return contactData;
+}
+
+const getInputValueById = (id) => {
+  let value = document.querySelector(id).value;
+  return value;
+}

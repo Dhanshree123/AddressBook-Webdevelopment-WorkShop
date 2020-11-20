@@ -19,7 +19,7 @@
             </div>
         </header>
         <div class="form-content">
-            <form class="form" action="#" onreset = "resetForm()" onsubmit="save()">
+            <form class="form" action="#" onreset = "resetForm()" onsubmit="save(event)">
                 <div class="form-head-content">
                 <div class="form-head">
                     PERSON ADDRESS FORM
@@ -36,7 +36,7 @@
             </div>
             <div class="single-row-content">
                 <div class="inner-single-row">
-                <select class="select-input" required>
+                    <select class="select-input" id="city" name="City" required>
                   <option value="" selected disabled hidden>Select City</option>
                   <option value="Hyderabad">Hyderabad</option>
                   <option value="Bengaluru">Bengaluru</option>
@@ -46,7 +46,7 @@
                 </select>
               </div>
               <div class="inner-single-row">
-                <select class="select-input" required>
+                <select class="select-input" id="state" name="State" required>
                   <option value="" selected disabled hidden>Select State</option>
                   <option value="Andhra Pradesh">Andhra Pradesh</option>
                   <option value="Karnataka">Karnataka</option>
@@ -60,7 +60,7 @@
               </div>
             </div>
             <div class="row-content">
-                <input class="input" type="text" name="phoneNumber" id="phoneNumber" placeholder="PhoneNumber">
+                <input class="input" type="text" name="phoneNumber" id="phoneNumber" required placeholder="Phone Number">
                 <error-output class="phone-error" for="text"></error-output>
             </div>
             <div class = "buttonParent">
@@ -71,7 +71,7 @@
             </div>
             </form></div>
             <script src="../js/form.js"></script>
-            <script src="../js/Contacts.js"></script>
+            <script src="../js/Contact.js"></script>
     </body>
     </html>
     
