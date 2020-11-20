@@ -81,3 +81,23 @@ function createAndUpdateStorage(contactData) {
   }
   localStorage.setItem("contactLocalStorageList", JSON.stringify(contactLocalStorageList));
 }
+
+const resetForm = () => {
+
+  setValue('#name','');
+  setValue('#address','');
+  setSelectedIndex('#city',0);
+  setSelectedIndex('#state',0);
+  setValue('#zip','');
+  setValue('#phoneNumber','');
+}
+
+const setValue = (id,value) => {
+const element = document.querySelector(id);
+element.value = value;
+}
+
+const setSelectedIndex = (id,index) => {
+const element = document.querySelector(id);
+element.selectedIndex = index;
+}
