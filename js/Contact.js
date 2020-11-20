@@ -10,24 +10,18 @@ class Contact{
         this._id = id;
     }
 
-    get firstName()
+    get name()
     {
-        return this._firstName;
+        return this._name;
     }
 
-    set firstName(firstName)
+    set name(name)
     {
-        this._firstName = firstName;
-    }
-
-    get lastName()
-    {
-        return this._lastName;
-    }
-
-    set lastName(lastName)
-    {
-        this._lastName = lastName;
+        let nameRegex = RegExp('^[A-Z]{1}[a-zA-Z\\s]{2,}$');
+        if(nameRegex.test(name))
+            this._name = name;
+        else
+            throw 'Invalid Name';
     }
 
     get address()
@@ -37,7 +31,19 @@ class Contact{
 
     set address(address)
     {
-        this._address = address;
+        let addressRegex = RegExp('^[A-Za-z, 0-9]{3,}$');
+        let addressWords = address.split(" ");
+        if(addressWords.length>1) {
+            for(let words of addressWords) {
+                if(!addressRegex.test(words))   
+                    addressError.textContent = "Minimum Length Should be 3";
+                else
+                    this._address = address;
+            }
+        }
+        else {
+            addressError.textContent = "Add multiple words";
+        }
     }
 
     get city()
@@ -77,7 +83,19 @@ class Contact{
 
     set phone(phone)
     {
-        this._phone = phone;
+        let phoneRegex1 = RegExp('^[1-9]{1}[0-9]{9}$');
+        let phoneRegex2 = RegExp('^[0-9]{2}[1-9]{1}[0-9]{9}$');
+        let phoneRegex3 = RegExp('^[+]{1}[0-9]{2}[1-9]{1}[0-9]{9}$');
+        if(phoneRegex1.test(phone) || phoneRegex2.test(phone) || phoneRegex3.test(phone))
+            this._phone = phone;
+        else 
+           "Invalid Phone Number";
+    }
+
+    toString()
+    {
+        return "Id = "+this.id+", Name = "+this.name+", Address = "+this.address+
+                ", City = "+this.city+", State = "+this.state+", Zip = "+this.zip+", Phone = "+this.phone;
     }
 
 } 
