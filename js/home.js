@@ -74,3 +74,11 @@ window.addEventListener('DOMContentLoaded',(event) => {
     localStorage.setItem("contactLocalStorageList",JSON.stringify(contactLocalStorageList));
     createInnerHtml();
 }
+
+const update = (node) =>{
+  let contactToUpdate = contactLocalStorageList.find(contactData => contactData._id==node.id);
+  if(!contactToUpdate) return;
+  localStorage.setItem("editContact",JSON.stringify(contactToUpdate));
+  window.location.replace(site_properties.add_contact_page); 
+}
+
